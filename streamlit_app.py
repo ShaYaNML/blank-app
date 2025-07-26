@@ -1,59 +1,29 @@
 import streamlit as st
 
-st.title("🎈 My new app")
-st.write(
-    "Let's start building! For help and inspiration, head over to [docs.streamlit.io](https://docs.streamlit.io/)."
+st.title("Basic Arithmetic Calculator")
+
+# User inputs
+num1 = st.number_input("Enter first number:", value=0.0, format="%.2f")
+num2 = st.number_input("Enter second number:", value=0.0, format="%.2f")
+
+operation = st.selectbox(
+    "Choose operation:",
+    ("Add", "Subtract", "Multiply", "Divide")
 )
-# Simple CLI Calculator in Python
 
-def add(x, y):
-    return x + y
+result = None
 
-def subtract(x, y):
-    return x - y
+if st.button("Calculate"):
+    if operation == "Add":
+        result = num1 + num2
+    elif operation == "Subtract":
+        result = num1 - num2
+    elif operation == "Multiply":
+        result = num1 * num2
+    elif operation == "Divide":
+        if num2 != 0:
+            result = num1 / num2
+        else:
+            result = "Error: Division by zero"
 
-def multiply(x, y):
-    return x * y
-
-def divide(x, y):
-    if y == 0:
-        return "Error: Cannot divide by zero."
-    return x / y
-
-def calculator():
-    print("\nSimple Calculator")
-    print("Select operation:")
-    print("1. Add")
-    print("2. Subtract")
-    print("3. Multiply")
-    print("4. Divide")
-
-    choice = input("Enter choice (1/2/3/4): ")
-
-    if choice not in ['1', '2', '3', '4']:
-        print("Invalid input")
-        return
-
-    try:
-        num1 = float(input("Enter first number: "))
-        num2 = float(input("Enter second number: "))
-    except ValueError:
-        print("Invalid number input")
-        return
-
-    if choice == '1':
-        print(f"Result: {add(num1, num2)}")
-    elif choice == '2':
-        print(f"Result: {subtract(num1, num2)}")
-    elif choice == '3':
-        print(f"Result: {multiply(num1, num2)}")
-    elif choice == '4':
-        print(f"Result: {divide(num1, num2)}")
-
-if __name__ == "__main__":
-    while True:
-        calculator()
-        cont = input("\nDo you want to perform another calculation? (yes/no): ").lower()
-        if cont != 'yes':
-            print("Goodbye!")
-            break
+    st.write(f"Result: {result}")
