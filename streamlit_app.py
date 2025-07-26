@@ -60,6 +60,4 @@ for row in buttons:
             st.button(label, key=label, on_click=button_click, args=(label,), use_container_width=True)
 
 st.markdown('</div>', unsafe_allow_html=True)
-
-st.info("Functions: sin, cos, tan, log (natural log), sqrt, exp, ^ (power). Example: sin(3.14/2)+log(10
-
+st.info("Functions: sin, cos, tan, log (natural log), sqrt, exp, ^ (power). Example: sin(3.14/2)+log(10)")
